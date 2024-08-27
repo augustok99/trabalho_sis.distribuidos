@@ -1,5 +1,6 @@
 package carregabanco.model;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
@@ -12,16 +13,20 @@ import java.io.Serializable;
         private static final long serialVersionUID = 1L;
         //#,nome,email_contato,cargo,campus_lotacao,setor_lotacao.
 
+        @Column(name = "nome_servidor")
         private String nome_servidor;
+        @Column(name = "email_contato")
         private String email_contato;
+        @Column(name = "cargo")
         private String cargo;
+        @Column(name = "campus_lotacao")
         private String campus_lotacao;
+        @Column(name = "setor_lotacao")
         private String setor_lotacao;
 
         public ServidorModel() {}
 
         public ServidorModel(String nome_servidor, String email_contato, String cargo, String campus_lotacao, String setor_lotacao) {
-            super();
             this.nome_servidor = nome_servidor;
             this.email_contato = email_contato;
             this.cargo = cargo;

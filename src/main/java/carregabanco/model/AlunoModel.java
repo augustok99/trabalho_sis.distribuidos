@@ -14,12 +14,19 @@ public class AlunoModel extends PessoaModel implements Serializable {
 	private static final long serialVersionUID = 1L;
 	//campus,polo,coordenacao,curso,nome_estudante,situacao,idade,sexo,email_institucional,periodo_entrada
 
+	@Column(name = "nome_estudante")
 	private String nome_estudante;
+	@Column(name = "coordenacao")
 	private String coordenacao;
+	@Column(name = "curso")
 	private String curso;
+	@Column(name = "situacao")
 	private String situacao;
+	@Column(name = "periodo_entrada")
 	private String periodo_entrada;
+	@Column(name="data_conclusao")
 	private String data_conclusao;
+	@Column(name="cidade")
 	private String cidade;
 
 	public AlunoModel() {}
@@ -34,6 +41,7 @@ public class AlunoModel extends PessoaModel implements Serializable {
 		this.data_conclusao = data_conclusao;
 		this.cidade = cidade;
 	}
+
 
 	public AlunoModel(String campus, String polo, String email_institucional, int idade, String sexo, String nome_estudante, String coordenacao, String curso, String situacao, String periodo_entrada, String data_conclusao, String cidade) {
 		super(campus, polo, email_institucional, idade, sexo);

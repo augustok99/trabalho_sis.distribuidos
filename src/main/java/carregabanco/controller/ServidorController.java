@@ -19,13 +19,38 @@ public class ServidorController {
         return servidorDao.findAll();
     }
 
-    public void removerPorID(Long id) {
+    public boolean removerPorID(Long id) {
         ServidorDao servidorDao = ServidorDao.getInstance();
-        servidorDao.removeById(id);
+        ServidorModel servidor = servidorDao.findById(id);
+        if (servidor != null) {
+            servidorDao.removeById(id);
+            return true;
+        }
+        return false;
     }
 
     public void editar(ServidorModel servidor) {
         ServidorDao servidorDao = ServidorDao.getInstance();
-        servidorDao.merge(servidor);;
+        servidorDao.merge(servidor);
+    }
+
+    public ServidorModel buscarPorId(Long id) {
+        ServidorDao servidorDao = ServidorDao.getInstance();
+        return servidorDao.findById(id);
+    }
+
+    public List<ServidorModel> buscarPorNome(String nome) {
+        ServidorDao servidorDao = ServidorDao.getInstance();
+        return servidorDao.findByNome(nome);
+    }
+
+    public List<ServidorModel> buscarPorCargo(String cargo) {
+        ServidorDao servidorDao = ServidorDao.getInstance();
+        return servidorDao.findByCargo(cargo);
+    }
+
+    public List<ServidorModel> buscarPorSetor(String setor) {
+        ServidorDao servidorDao = ServidorDao.getInstance();
+        return servidorDao.findBySetor(setor);
     }
 }

@@ -32,8 +32,13 @@ public class ServidorDao {
         return instance;
     }
 
-    public ServidorModel getById(final long id) {
-        return entityManager.find(ServidorModel.class, id);
+    public ServidorModel findById(final long id) {
+        try {
+            return entityManager.find(ServidorModel.class, id);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
     }
 
     @SuppressWarnings("unchecked")
@@ -77,11 +82,32 @@ public class ServidorDao {
 
     public void removeById(final long id) {
         try {
-            ServidorModel servidor = getById(id);
+            ServidorModel servidor = findById(id);
             remove(servidor);
         } catch (Exception ex) {
             ex.printStackTrace();
         }
+    }
+
+    @SuppressWarnings("unchecked")
+    public List<ServidorModel> findByNome(String nome) {
+        return entityManager.createQuery("FROM ServidorModel WHERE nome_servidor LIKE :nome")
+                .setParameter("nome", "%" + nome + "%")
+                .getResultList();
+    }
+
+    @SuppressWarnings("unchecked")
+    public List<ServidorModel> findByCargo(String cargo) {
+        return entityManager.createQuery("FROM ServidorModel WHERE cargo LIKE :cargo")
+                .setParameter("cargo", "%" + cargo + "%")
+                .getResultList();
+    }
+
+    @SuppressWarnings("unchecked")
+    public List<ServidorModel> findBySetor(String setor) {
+        return entityManager.createQuery("FROM ServidorModel WHERE setor_lotacao LIKE :setor")
+                .setParameter("setor", "%" + setor + "%")
+                .getResultList();
     }
 
 }

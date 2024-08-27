@@ -2,13 +2,8 @@ package carregabanco.model;
 
 import java.io.Serializable;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
+import javax.persistence.*;
 import javax.persistence.Id;
-import javax.persistence.Inheritance;
-import javax.persistence.InheritanceType;
-import javax.persistence.Table;
 
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
@@ -20,10 +15,12 @@ public class PessoaModel implements Serializable{
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long idPessoa;
 
+	@Column(name = "campus")
 	private String campus;
 	private String polo;
 	private String email_institucional;
 	private int idade;
+	@Column(name= "sexo")
 	private String sexo;
 	
 	public PessoaModel() {}
